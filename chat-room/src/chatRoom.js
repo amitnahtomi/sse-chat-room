@@ -25,7 +25,8 @@ export default function ChatRoom(props) {
                 body: JSON.stringify({"user": props.nickName})
             })
         }
-        return <div style={logStyle}>
+        return <div style={chatStyle}>
+            <div>
         <ul style={msgListStyle}>
             {props.massages.map((msg)=>{
                 return <li style={msgStyle}><span style={senderStyle}>{msg.user}: </span><br /><span>{msg.msg}</span><label style={timeStyle}>{msg.time}</label></li>
@@ -35,7 +36,7 @@ export default function ChatRoom(props) {
         {props.participants.map((participant)=>{
                 return <li>{participant}</li>
             })}
-        </ul><br />
+        </ul></div><br />
         <input style={inputStyle} ref={massage} placeholder='type your massage'></input>
         <button style={buttonStyle} onClick={sendClick}>send</button>
         <button style={buttonStyle} onClick={logOutClick}><Link style={linkStyle} to='/'>log out</Link></button>
@@ -45,18 +46,24 @@ export default function ChatRoom(props) {
 const msgListStyle = {
     listStyleType: "none",
     fontSize: "20px",
-    width: "400px",
+    width: "500px",
     border: "3px solid blue",
-    height: "400px",
-    display: "inline-block"
+    height: "330px",
+    display: "inline-block",
+    overflow: "hidden",
+    overflowY:"scroll",
+    overflowAnchor: "none",
+    marginRight: "90px"
 }
 
 const msgStyle = {
     border: "2px solid blue",
     borderRadius: "10px",
-    width: "100px",
-    paddingLeft: "5px",
+    width: "450px",
+    padding: "5px",
     marginTop: "10px",
+    textAlign: "left",
+    overflow: "auto"
 }
 
 const senderStyle = {
@@ -74,10 +81,11 @@ const linkStyle = {
     color: "blue"
 }
 
-const logStyle = {
+const chatStyle = {
     textAlign: "center",    
     fontSize: "45px",
-    color: "LightSkyBlue"
+    color: "LightSkyBlue",
+    overflowAnchor: "none"
 }
 
 const inputStyle = {
@@ -103,11 +111,13 @@ const buttonStyle = {
 }
 
 const usersListStyle = {
-    width: "200px",
+    width: "100px",
     color: "green",
     border: "5px solid green",
-    height: "200px",
+    height: "330px",
     marginLeft: "30px",
-    display: "inline-block"
+    display: "inline-block",
+    overflow: "hidden",
+    overflowY:"scroll",
+    fontSize: "30px"
 }
-
