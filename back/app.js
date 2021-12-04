@@ -54,7 +54,7 @@ app.get('/users', (req, res, next)=>{
         "Access-Control-Allow-Headers":
           "Origin, X-Requested-With, Content-Type, Accept",
       })
-    
+      req.on('close', ()=>{users.splice(users.indexOf(req.header('username')), 1)})
       setInterval(() => {
         res.write(`data: ${JSON.stringify(users)}\n\n`)
       }, 2000)

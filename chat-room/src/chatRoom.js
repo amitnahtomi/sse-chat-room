@@ -35,7 +35,7 @@ export default function ChatRoom(props) {
         {props.participants.map((participant)=>{
                 return <li>{participant}</li>
             })}
-        </ul>
+        </ul><br />
         <input style={inputStyle} ref={massage} placeholder='type your massage'></input>
         <button style={buttonStyle} onClick={sendClick}>send</button>
         <button style={buttonStyle} onClick={logOutClick}><Link style={linkStyle} to='/'>log out</Link></button>
@@ -45,7 +45,10 @@ export default function ChatRoom(props) {
 const msgListStyle = {
     listStyleType: "none",
     fontSize: "20px",
-    width: "200px"
+    width: "400px",
+    border: "3px solid blue",
+    height: "400px",
+    display: "inline-block"
 }
 
 const msgStyle = {
@@ -72,8 +75,7 @@ const linkStyle = {
 }
 
 const logStyle = {
-    textAlign: "center",
-    paddingTop: "50px",
+    textAlign: "center",    
     fontSize: "45px",
     color: "LightSkyBlue"
 }
@@ -102,9 +104,10 @@ const buttonStyle = {
 
 const usersListStyle = {
     width: "200px",
-    color: "green"
+    color: "green",
+    border: "5px solid green",
+    height: "200px",
+    marginLeft: "30px",
+    display: "inline-block"
 }
 
-const userStyle = {
-    color: "black"
-}

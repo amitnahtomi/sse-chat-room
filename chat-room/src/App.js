@@ -16,7 +16,7 @@ export default function App() {
   useEffect(() => {
     let msgSource = new EventSource("http://localhost:8080/messages")
     msgSource.onmessage = e => updateMsg(JSON.parse(e.data));
-    let usersSource = new EventSource("http://localhost:8080/users")
+    let usersSource = new EventSource("http://localhost:8080/users", {username: nickName})
     usersSource.onmessage = e => updateParticipants(JSON.parse(e.data))
   }, [])
 
