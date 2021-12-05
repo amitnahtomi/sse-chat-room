@@ -1,9 +1,13 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 const axios = require('axios');
 
 export default function ChatRoom(props) {
     const massage = useRef(null);
+    const msgUl = useRef(null);
+    useEffect(()=>{
+        msgUl.current.scrollTo(0,1000)
+    })
     const sendClick = async () => {
             const response = await fetch("http://localhost:8080/massage" ,{
                 method: "PUT",
@@ -27,7 +31,7 @@ export default function ChatRoom(props) {
         }
         return <div style={chatStyle}>
             <div>
-        <ul style={msgListStyle}>
+        <ul ref={msgUl} style={msgListStyle}>
             {props.massages.map((msg)=>{
                 return <li style={msgStyle}><span style={senderStyle}>{msg.user}: </span><br /><span>{msg.msg}</span><label style={timeStyle}>{msg.time}</label></li>
             })}
@@ -46,14 +50,13 @@ export default function ChatRoom(props) {
 const msgListStyle = {
     listStyleType: "none",
     fontSize: "20px",
-    width: "500px",
-    border: "3px solid blue",
+    width: "700px",
     height: "330px",
     display: "inline-block",
     overflow: "hidden",
     overflowY:"scroll",
     overflowAnchor: "none",
-    marginRight: "90px"
+    marginRight: "90px",
 }
 
 const msgStyle = {
@@ -63,7 +66,8 @@ const msgStyle = {
     padding: "5px",
     marginTop: "10px",
     textAlign: "left",
-    overflow: "auto"
+    overflow: "auto",
+    backgroundColor: "white"
 }
 
 const senderStyle = {
